@@ -2,12 +2,33 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import config from 'config';
 
-export interface PostInput {}
-
-export interface PostDocument extends PostInput, mongoose.Document {
+export interface PostInput {
   title: string;
   content: string;
+  author: mongoose.Types.ObjectId;
+  tags: string[];
+  categories: mongoose.Types.ObjectId[];
+  publishedAt?: Date;
+  scheduledAt?: Date;
+  status?: 'draft' | 'published' | 'scheduled';
+  visibility?: 'public' | 'private';
+  metadata?: {
+    attachments?: {
+      type: string;
+      url: string;
+    }[];
+    externalLinks?: string[];
+    hashtags?: string[];
+    mentions?: string[];
+  };
+  analytics?: {
+    engagementRate?: number;
+    clickThroughRate?: number;
+    impressions?: number;
+  };
 }
+
+export interface PostDocument extends PostInput, mongoose.Document {}
 
 const postSchema = new mongoose.Schema(
   {
@@ -33,8 +54,16 @@ const postSchema = new mongoose.Schema(
     ],
     publishedAt: { type: Date },
     scheduledAt: { type: Date },
-    status: { type: String },
-    visibility: { type: String },
+    status: {
+      type: String,
+      enum: ['draft', 'published', 'scheduled'],
+      default: 'draft',
+    },
+    visibility: {
+      type: String,
+      enum: ['public', 'private'],
+      default: 'public',
+    },
     metadata: {
       attachments: [
         {
