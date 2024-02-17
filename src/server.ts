@@ -8,7 +8,11 @@ import { startMetricsServer } from './utils/metrics.utils';
 
 validateEnv();
 
-const app = new App([new HealthController(), new UserController(), new SessionController()]);
+const app = new App([
+  new HealthController(),
+  new UserController(),
+  new SessionController(),
+]);
 
 app.listen();
 

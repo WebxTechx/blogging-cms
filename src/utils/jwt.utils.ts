@@ -9,11 +9,14 @@ import jwt from 'jsonwebtoken';
 const privateKey = fs.readFileSync('private.key');
 const publicKey = fs.readFileSync('public.key');
 
-export const signJwt = (object: Object, options?: jwt.SignOptions | undefined) => {
+export const signJwt = (
+  object: Object,
+  options?: jwt.SignOptions | undefined
+) => {
   // log.info(`JWT Option: ${JSON.stringify(options)}`);
   return jwt.sign(object, privateKey, {
     ...(options && options),
-    algorithm: 'RS256'
+    algorithm: 'RS256',
   });
 };
 
@@ -27,7 +30,7 @@ export const verifyJwt = (token: string) => {
     return {
       valid: false,
       expired: err.message === 'jwt expired',
-      decoded: null
+      decoded: null,
     };
   }
 };

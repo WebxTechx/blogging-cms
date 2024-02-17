@@ -17,10 +17,18 @@ class UserController implements Controller {
   }
 
   private initializeRoutes() {
-    this.router.post(`${this.path}`, validateResource(createUserSchema), this.createUserHandler);
+    this.router.post(
+      `${this.path}`,
+      validateResource(createUserSchema),
+      this.createUserHandler
+    );
   }
 
-  createUserHandler = async (req: Request<{}, {}, CreateUserInput['body']>, res: Response, next: NextFunction) => {
+  createUserHandler = async (
+    req: Request<{}, {}, CreateUserInput['body']>,
+    res: Response,
+    next: NextFunction
+  ) => {
     try {
       const body = req.body;
       const user = await createUser(body);

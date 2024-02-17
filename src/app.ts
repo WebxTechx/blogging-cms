@@ -50,7 +50,7 @@ class App {
             {
               method: req.method,
               route: req.route.path,
-              status_code: res.statusCode
+              status_code: res.statusCode,
             },
             time * 1000
           );

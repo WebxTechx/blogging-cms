@@ -14,11 +14,18 @@ export const findSessions = async (query: FilterQuery<SessionDocument>) => {
   return SessionModel.find(query).lean();
 };
 
-export const updateSession = async (query: FilterQuery<SessionDocument>, update: UpdateQuery<SessionDocument>) => {
+export const updateSession = async (
+  query: FilterQuery<SessionDocument>,
+  update: UpdateQuery<SessionDocument>
+) => {
   return SessionModel.updateOne(query, update);
 };
 
-export const reIssueAccessToken = async ({ refreshToken }: { refreshToken: string }) => {
+export const reIssueAccessToken = async ({
+  refreshToken,
+}: {
+  refreshToken: string;
+}) => {
   const { decoded } = verifyJwt(refreshToken);
   if (!decoded || !get(decoded, 'session')) return false;
 
@@ -32,7 +39,10 @@ export const reIssueAccessToken = async ({ refreshToken }: { refreshToken: strin
   if (!user) return false;
 
   const accessTokenTtl = config.get<string>('accessTokenTtl');
-  const accessToken = signJwt({ ...user, session: session._id }, { expiresIn: accessTokenTtl });
+  const accessToken = signJwt(
+    { ...user, session: session._id },
+    { expiresIn: accessTokenTtl }
+  );
 
   return accessToken;
 };

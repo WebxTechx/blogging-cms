@@ -11,7 +11,13 @@ export const createUser = async (input: UserInput) => {
   }
 };
 
-export const validatePassword = async ({ email, password }: { email: string; password: string }) => {
+export const validatePassword = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
   const user = await UserModel.findOne({ email });
 
   if (!user) {
@@ -27,4 +33,11 @@ export const validatePassword = async ({ email, password }: { email: string; pas
 
 export const findUser = async (query: FilterQuery<UserDocument>) => {
   return UserModel.findOne(query).lean();
+};
+
+export const updateUser = async (input: UserInput) => {
+  try {
+  } catch (err: any) {
+    throw new Error(err);
+  }
 };
