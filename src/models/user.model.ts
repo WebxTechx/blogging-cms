@@ -105,6 +105,7 @@ const userSchema = new mongoose.Schema(
     phone_verified: { type: Boolean, default: false },
     email_verified: { type: Boolean, default: false },
     admin_verified: { type: Boolean, default: false },
+    status: { type: String, default: 'active' },
 
     profile: {
       firstName: { type: String, default: null },
@@ -138,7 +139,6 @@ const userSchema = new mongoose.Schema(
       timezone: { type: String, default: null },
     },
 
-    status: { type: String, default: 'active' },
     // savedPosts: [Object]
     activity: {
       lastLogin: { type: Date },

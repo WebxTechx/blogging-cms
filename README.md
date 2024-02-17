@@ -1,7 +1,5 @@
 # REST API with Node.js, Mongoose, TypeScript & JWT
 
-## [How to generate JWT RS256 Key](https://gist.github.com/ygotthilf/baa58da5c3dd1f69fae9)
-
 ### Replace your own Public and Private Key
 
 ## Concepts
@@ -15,7 +13,7 @@
   openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
   cat jwtRS256.key
   cat jwtRS256.key.pub
-}
+  }
 - Request validation
 
 ## Technologies
