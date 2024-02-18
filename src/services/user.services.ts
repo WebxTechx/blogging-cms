@@ -35,8 +35,22 @@ export const findUser = async (query: FilterQuery<UserDocument>) => {
   return UserModel.findOne(query).lean();
 };
 
-export const updateUser = async (input: UserInput) => {
+export const updateUser = async (
+  id: string,
+  updates: Partial<UserDocument>
+) => {
   try {
+    const user = await UserModel.findById(id);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    Object.assign(user, updates);
+
+    await user.save();
+
+    return omit(user.toJSON(), 'password');
   } catch (err: any) {
     throw new Error(err);
   }

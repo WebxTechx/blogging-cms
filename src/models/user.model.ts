@@ -44,7 +44,7 @@ export interface UserDocument extends UserInput, mongoose.Document {
   email: string;
   name: string;
   password: string;
-  user_name?: string | null;
+  username?: string | null;
   phone_no?: number | null;
   phone_otp?: number | null;
   phone_verified: boolean;
@@ -99,13 +99,17 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     password: { type: String, required: true },
-    user_name: { type: String, unique: true },
+    username: { type: String, unique: true },
     phone_no: { type: Number, unique: true },
     phone_otp: { type: Number, unique: true },
     phone_verified: { type: Boolean, default: false },
     email_verified: { type: Boolean, default: false },
     admin_verified: { type: Boolean, default: false },
-    status: { type: String, default: 'active' },
+    status: {
+      type: String,
+      enum: ['active', 'deactivated', 'banned', 'suspended'],
+      default: 'active',
+    },
 
     profile: {
       firstName: { type: String, default: null },
@@ -122,20 +126,23 @@ const userSchema = new mongoose.Schema(
 
       socialLinks: [
         {
-          country_code: { type: String, default: null },
-          address: { type: String, default: null },
-          pincode: { type: Number, default: null },
+          platform: { type: String, default: null },
+          url: { type: String, default: null },
         },
       ],
     },
 
     preference: {
-      theme: { type: String, default: 'light' },
+      theme: {
+        type: String,
+        enum: ['light', 'dark', 'auto'],
+        default: 'light',
+      },
       notification: {
         email: { type: Boolean, default: false },
         push: { type: Boolean, default: true },
       },
-      language: { type: String, default: 'en' },
+      language: { type: String },
       timezone: { type: String, default: null },
     },
 
@@ -152,7 +159,11 @@ const userSchema = new mongoose.Schema(
     },
 
     permission: {
-      roles: [String],
+      roles: [
+        {
+          type: String,
+        },
+      ],
       customPermissions: {
         canWritePosts: { type: Boolean },
         canEditOwnPosts: { type: Boolean },

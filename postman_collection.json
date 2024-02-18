@@ -31,6 +31,28 @@
           "response": []
         },
         {
+          "name": "Update User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{email}}\",\n    \"name\": \"{{name}}\",\n    \"username\": \"{{username}}\",\n    \"phone_no\": \"{{phone_no}}\",\n    \"profile\": {\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"bio\": \"{{bio}}\",\n        \"avatar\": \"{{avatar}}\",\n        \"cover_img\": \"{{cover_img}}\",\n        \"location\": {\n        \"country_code\": \"{{country_code}}\",\n        \"address\": \"{{address}}\",\n        \"pincode\": {{pincode}}\n  },\n        \"socialLinks\": {\n        \"platform\": \"{{social_platform}}\",\n        \"url\": \"{{socialURL}}\"\n   }\n}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/api/users/update",
+              "host": ["{{endpoint}}"],
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Create Session",
           "event": [
             {
