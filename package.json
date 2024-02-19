@@ -4,11 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "install-deps": "npm install && cd client && npm install",
-    "start": "npm-run-all --parallel dev-start start-frontend",
+    "install-deps": "npm install && cd client && npm install && cd admin && npm install",
+    "start": "npm-run-all --parallel dev-start start-frontend start-admin",
     "dev-start": "ts-node-dev --respawn --transpile-only src/server.ts",
     "start-server": "node dist/src/server.js",
     "start-frontend": "cd client && npm run dev",
+    "start-admin": "cd admin && npm run dev",
     "build": "rm -rf dist && tsc -p ."
   },
   "dependencies": {
