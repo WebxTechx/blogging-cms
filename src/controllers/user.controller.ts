@@ -7,7 +7,7 @@ import { createUser, updateUser } from '../services/user.services';
 import validateResource from '../middleware/validate-resource';
 import { getSuccessResponse } from '../utils/response.utils';
 import ExistedEmailException from '../exceptions/existed-email.exception';
-import UserIDNotFoundException from 'src/exceptions/user-id-not-found.exception';
+import UserIDNotFoundException from '../exceptions/user-id-not-found.exception';
 
 class UserController implements Controller {
   public path = '/users';
