@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} bg-body-tertiary`}>{children}</body>
       <Script type='text/javascript' src='/assets/js/main.js' />
       <Script type='text/javascript' src='/assets/js/switcher.js' />
     </html>
