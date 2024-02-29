@@ -1,0 +1,67 @@
+/* element vars */
+:root {
+  --scale: 36px;
+  --speed: 2s;
+}
+
+/* quick and easy complementary colors */
+:root {
+  --angle: 25;
+  --color-element: hsl(var(--angle), 100%, 65%);
+  --color-background: hsl(calc(var(--angle) + 180), 100%, 100%);
+}
+
+.loader-background{
+  background: var(--color-background);
+  position: absolute;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+}
+
+@keyframes loader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  position: absolute;
+  margin: calc(var(--scale) / -2) 0 0 calc(var(--scale) / -2);
+  border: calc(var(--scale) * 0.1) solid var(--color-element);
+  box-sizing: border-box;
+  overflow: hidden;
+  width: var(--scale);
+  height: var(--scale);
+  left: 50%;
+  top: 50%;
+  animation: loader-spin var(--speed) linear infinite reverse;
+  /* taken and tweaked from: https://css-tricks.com/gooey-effect/ */
+  filter: url(#goo);
+  /* hides a 1px render error in some browsers that
+       happens with transformed children inside an
+       overflow hidden parent. only a real issue
+       without the filter */
+  box-shadow: 0 0 0 1px var(--color-element) inset;
+  z-index: 999999;
+}
+
+.loader:before {
+  content: '';
+  position: absolute;
+  animation: loader-spin var(--speed) cubic-bezier(0.59, 0.25, 0.4, 0.69)
+    infinite;
+  background: var(--color-element);
+  transform-origin: top center;
+  border-radius: 50%;
+  width: 150%;
+  height: 150%;
+  top: 50%;
+  left: calc(-12.5% - 1px); /* converted from SCSS */
+}

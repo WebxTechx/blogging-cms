@@ -35,7 +35,7 @@ Table Of Content
 setTimeout(() => {
   !(function () {
     var scriptElement = document.createElement('script')
-    scriptElement.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js'
+    scriptElement.src = ''
     document.head.appendChild(scriptElement)
     scriptElement.onload = function () {
       console.log('CDN script loaded successfully.')
