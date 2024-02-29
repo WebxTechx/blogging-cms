@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const Header = () => {
@@ -10,9 +11,9 @@ const Header = () => {
             {/* Top bar left */}
             <ul className='nav'>
               <li className='nav-item'>
-                <a className='nav-link ps-0' href='about-us.html'>
+                <Link className='nav-link ps-0' href='about'>
                   About
-                </a>
+                </Link>
               </li>
               <li className='nav-item'>
                 <a className='nav-link' href='#'>

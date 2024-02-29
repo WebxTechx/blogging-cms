@@ -23,6 +23,10 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>{children}</body>
       <Script type='text/javascript' src='/assets/js/functions.js' />
+      {/* <Script type='text/javascript' src='/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' /> */}
+      <Script type='text/javascript' src='/assets/vendor/tiny-slider/tiny-slider.js' />
+      <Script type='text/javascript' src='/assets/vendor/sticky-js/sticky.min.js' />
+      <Script type='text/javascript' src='/assets/vendor/plyr/plyr.js' />
     </html>
   );
 }

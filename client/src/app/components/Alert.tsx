@@ -1,6 +1,11 @@
+"use client"
 import React from 'react';
 
-const Alert = () => {
+type ChildProps = {
+  handleClick: () => void;
+};
+
+const Alert:React.FC<ChildProps> = ({handleClick}) => {
   return (
     <div
       className='alert alert-warning py-2 m-0 bg-primary border-0 rounded-0 alert-dismissible fade show text-center overflow-hidden'
@@ -47,6 +52,7 @@ const Alert = () => {
         className='btn-close btn-close-white opacity-9 p-3'
         data-bs-dismiss='alert'
         aria-label='Close'
+        onClick={handleClick}
       />
     </div>
   );
