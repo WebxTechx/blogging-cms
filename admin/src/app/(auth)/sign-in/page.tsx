@@ -1,4 +1,6 @@
+import Input from '@/app/components/fields/Input';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function page() {
   return (
@@ -16,11 +18,15 @@ export default function page() {
           </a>
           <div className='mt-16'>
             <h1 className='ls-tight fw-bolder display-6 text-white mb-5'>
-              Trade the world’s top assets and cryptos
+              Need Help?
             </h1>
             <p className='text-white text-opacity-75 pe-xl-24'>
-              Create beautiful websites that are supported by rock-solid design
-              principles.
+              If you&apos;re experiencing any issues with logging in or have any
+              questions, feel free to contact our{' '}
+              <Link href='' className='text-white'>
+                support team
+              </Link>
+              . We&apos;re here to assist you.
             </p>
           </div>
         </div>
@@ -44,39 +50,33 @@ export default function page() {
                   alt='...'
                 /> */}
             </a>
-            <h1 className='ls-tight fw-bolder h3'>Sign in to your account</h1>
+            <h1 className='ls-tight fw-bolder h3'>
+              Welcome to Our Blogging CMS - SignIn
+            </h1>
             <div className='mt-3 text-sm text-muted'>
-              <span>Don&apos;t have an account?</span>{' '}
-              <a href='register.html' className='fw-semibold'>
-                Sign up
-              </a>{' '}
-              for a free trial.
+              <span>
+                Welcome back! Please log in to access your account and start
+                creating amazing content.
+              </span>
             </div>
           </div>
           <form>
             <div className='mb-5'>
-              <label className='form-label' htmlFor='email'>
-                Email address
-              </label>{' '}
-              <input type='email' className='form-control' id='email' />
+              <Input
+                label={'Email Address'}
+                type={'email'}
+                placeholder={'Email Address'}
+                value={''}
+                id='email'
+              />
             </div>
             <div className='mb-5'>
-              <div className='d-flex justify-content-between gap-2 mb-2 align-items-center'>
-                <label className='form-label mb-0' htmlFor='password'>
-                  Password
-                </label>{' '}
-                <a
-                  href='#'
-                  className='text-sm text-muted text-primary-hover text-underline'
-                >
-                  Forgot password?
-                </a>
-              </div>
-              <input
-                type='password'
-                className='form-control'
+              <Input
+                label={'Password'}
+                type={'password'}
+                placeholder={'Password'}
+                value={''}
                 id='password'
-                autoComplete='current-password'
               />
             </div>
             <div className='mb-5'>
@@ -98,17 +98,17 @@ export default function page() {
               </a>
             </div>
           </form>
-          <div className='py-5 text-center'>
+          {/* <div className='py-5 text-center'>
             <span className='text-xs text-uppercase fw-semibold'>or</span>
           </div>
           <div className='row g-2'>
             <div className='col-sm-6'>
               <a href='#' className='btn btn-neutral w-100'>
                 <span className='icon icon-sm pe-2'>
-                  {/* <Image
+                  <Image
                       src='https://satoshi.webpixels.io/Image/social/github.svg'
                       alt='...'
-                    /> */}
+                    />
                 </span>
                 Github
               </a>
@@ -116,15 +116,15 @@ export default function page() {
             <div className='col-sm-6'>
               <a href='#' className='btn btn-neutral w-100'>
                 <span className='icon icon-sm pe-2'>
-                  {/* <Image
+                  <Image
                       src='https://satoshi.webpixels.io/Image/social/google.svg'
                       alt='...'
-                    /> */}
+                    />
                 </span>
                 Google
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
