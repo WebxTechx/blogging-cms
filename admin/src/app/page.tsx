@@ -1,5 +1,10 @@
-import Image from 'next/image';
+'use client';
+import { redirect, usePathname } from 'next/navigation';
 
 export default function Home() {
-  return <main>tarun</main>;
+  const pathname = usePathname();
+  console.log(pathname);
+  if (pathname == '/') {
+    redirect('sign-in');
+  }
 }

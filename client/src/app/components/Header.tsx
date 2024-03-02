@@ -197,7 +197,7 @@ const Header = () => {
         </div>
       </div>
       {/* Logo Nav START */}
-      <nav className='navbar navbar-expand-lg'>
+      <nav className='navbar navbar-expand-lg' id='sticky-space'>
         <div className='container'>
           {/* Logo START */}
           <a className='navbar-brand' href='index.html'>
