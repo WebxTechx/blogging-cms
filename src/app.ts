@@ -6,9 +6,10 @@ import log from './logger';
 import connectDb from './db/connect';
 import Controller from './interfaces/controller.interface';
 import { errorMiddleware, deserializeUser } from './middleware';
-import helmet from 'helmet';
+import helmet, { crossOriginOpenerPolicy } from 'helmet';
 import { restResponseTimeHistogram } from './utils/metrics.utils';
 import swaggerDocs from './utils/swagger';
+import cors from 'cors';
 
 const port = config.get('port') as number;
 const host = config.get('host') as string;
@@ -39,6 +40,7 @@ class App {
 
   private initializeMiddlewares() {
     this.app.use(helmet());
+    this.app.use(cors({origin:'http://localhost:3000/'}));
     this.app.use(deserializeUser);
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));

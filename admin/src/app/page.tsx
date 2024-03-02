@@ -1,5 +1,6 @@
 'use client';
 import { redirect, usePathname } from 'next/navigation';
+import { Toaster } from 'react-hot-toast';
 
 export default function Home() {
   const pathname = usePathname();
@@ -7,4 +8,8 @@ export default function Home() {
   if (pathname == '/') {
     redirect('sign-in');
   }
+
+  return (
+    <Toaster position="bottom-center" />
+  )
 }
