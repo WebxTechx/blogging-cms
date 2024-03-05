@@ -1,10 +1,51 @@
-import Input from '@/app/components/fields/Input';
+'use client';
+import { toastError } from '@/app/utils/global';
+import { axiosPost } from '../../utils/api';
+import { loginSchema } from '@/app/utils/Validations';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
+
+type FormValues = {
+  [K in keyof (typeof loginSchema)['_def']['shape']]: string;
+};
 
 export default function page() {
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [errors, setErrors] = useState<any>({});
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    try {
+      const field = loginSchema.pick<any>({
+        [name]: loginSchema.shape[name as keyof FormValues],
+      });
+      field.parse({ [name]: value });
+    } catch (error: any) {
+      setErrors(error);
+    }
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    // Validate all fields before submitting
+    try {
+      loginSchema.parse(formData);
+      console.log(formData);
+      const response = await axiosPost('sessions', formData);
+      console.log(response);
+    } catch (error: any) {
+      setErrors(error);
+      toastError(error.message)
+    }
+  };
+
   return (
     <div className='row g-0 justify-content-center gradient-bottom-right start-purple middle-indigo end-pink'>
+      <Toaster position="bottom-center" />
       <div className='col-md-6 col-lg-5 col-xl-5 position-fixed start-0 top-0 vh-100 overflow-y-hidden d-none d-lg-flex flex-lg-column'>
         <div className='p-12 py-xl-10 px-xl-20'>
           <a className='d-block' href='dashboard.html'>
@@ -60,24 +101,38 @@ export default function page() {
               </span>
             </div>
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className='mb-5'>
-              <Input
-                label={'Email Address'}
-                type={'email'}
+              <label className='form-label' htmlFor={'email'}>
+                Email Address
+              </label>
+              <input
+                type={'text'}
                 placeholder={'Email Address'}
-                value={''}
-                id='email'
+                onChange={handleChange}
+                name={'email'}
+                id={'email'}
+                className='form-control'
               />
+              {errors.email && (
+                <small className='text-danger'>{errors.email}</small>
+              )}
             </div>
             <div className='mb-5'>
-              <Input
-                label={'Password'}
+              <label className='form-label' htmlFor={'password'}>
+                Password
+              </label>
+              <input
                 type={'password'}
                 placeholder={'Password'}
-                value={''}
-                id='password'
+                onChange={handleChange}
+                name={'password'}
+                id={'password'}
+                className='form-control'
               />
+              {errors.email && (
+                <small className='text-danger'>{errors.password}</small>
+              )}
             </div>
             <div className='mb-5'>
               <div className='form-check'>
@@ -93,9 +148,9 @@ export default function page() {
               </div>
             </div>
             <div>
-              <a href='#' className='btn btn-dark w-100'>
+              <button type='submit' className='btn btn-dark w-100'>
                 Sign in
-              </a>
+              </button>
             </div>
           </form>
           {/* <div className='py-5 text-center'>
