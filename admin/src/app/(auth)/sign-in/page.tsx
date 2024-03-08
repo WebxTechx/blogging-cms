@@ -5,7 +5,7 @@ import { loginSchema } from '@/app/utils/Validations';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'sonner';
 
 type FormValues = {
   [K in keyof (typeof loginSchema)['_def']['shape']]: string;
