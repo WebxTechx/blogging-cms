@@ -1,6 +1,6 @@
 'use client';
 import { redirect, usePathname } from 'next/navigation';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'sonner'
 
 export default function Home() {
   const pathname = usePathname();

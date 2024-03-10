@@ -25,7 +25,7 @@ export default function RootLayout({
       <Script type='text/javascript' src='/assets/js/functions.js' />
       <Script
         type='text/javascript'
-        src='/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js'
+        src='/assets/vendor/bootstrap/bootstrap.bundle.min.js'
       />
       <Script
         type='text/javascript'
