@@ -1,5 +1,8 @@
 import { toast } from 'sonner';
 
+const secretKey = 'secret';
+const key = new TextEncoder().encode(secretKey);
+
 export const toastSuccess = (message: string) => {
   toast.success(message);
 };
@@ -18,7 +21,7 @@ export const toastPromise = (promise: any, message: string) => {
   });
 };
 
-export const toastCancel = (label:any,event:any) => {
+export const toastCancel = (label: any, event: any) => {
   toast('My cancel toast', {
     cancel: {
       label: label,

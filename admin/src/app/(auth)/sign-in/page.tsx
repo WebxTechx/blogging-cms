@@ -30,13 +30,13 @@ export default function page() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    // Validate all fields before submitting
     try {
       loginSchema.parse(formData);
-      console.log(formData);
       const response = await axiosPost('sessions', formData);
-      console.log(response);
+      if(response?.accessToken && response?.refreshToken) {
+        console.log('Logged In');
+        // console.log(crypto.subtle.decrypt(response.accessToken));
+      }
     } catch (error: any) {
       setErrors(error);
       toastError(error.message)

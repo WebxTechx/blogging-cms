@@ -43,10 +43,10 @@ async function axiosPost(
       config
     );
     if (
-      response.data?.data?.message === 'Success' &&
-      response.data?.data?.status === 200
+      response?.data?.message === 'Success' &&
+      response?.data?.status === 200
     ) {
-      return response.data;
+      return response?.data?.data;
     }
   } catch (error) {
     throw handleApiError(error);
