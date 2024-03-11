@@ -864,4 +864,4 @@ setTimeout(() => {
     // END: Traffic Chart
   };
   e.init();
-}, 1000);
+}, 2000);
